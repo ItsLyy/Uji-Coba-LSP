@@ -11,6 +11,7 @@ include 'koneksi.php';
 </head>
 <body>
   <main>
+    <a href="index.php">K E M B A L I</a>
     <!-- Membuat Table untuk mendisplay / menampilkan data -->
      <!-- Memanggil sebuah data dari database -->
      <?php
@@ -23,40 +24,56 @@ include 'koneksi.php';
           // membungkus sebuah <tr></tr> agar data ditampilkan di setiap baris
           $hargaTotal = $item['harga_barang'] * $item['jumlah_beli'];
           ?>
-    <table>
-      <thead>
-        <tr>
-          <th>ID Barang</th>
-          <th>Tanggal Barang</th>
-          <th>Stok Barang</th>
-          <th>Harga Barang</th>
-          <th>Tanggal Transaksi</th>
-          <th>Jumlah Transaksi</th>
-          <th>Harga Transaksi</th>
-          <th>Keterangan Transaksi</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr>
-            <td><?php echo $item['id_barang'] ?></td>
-            <td><?php echo $item['nama_barang'] ?></td>
-            <td><?php echo $item['jumlah_barang'] ?></td>
-            <td><?php echo $item['harga_barang'] ?></td>
-            <td><?php echo $item['tanggal_transaksi'] ?></td>
-            <td><?php echo $item['jumlah_beli'] ?></td>
-            <td><?php echo $hargaTotal ?></td>
-            <td><?php echo $item['keterangan'] ?></td>
-
-            <?php
-              if($item['keterangan'] == 'Lunas') {
-                echo '<td><a href="riwayat_keterangan.php?id='. $id .'?keterangan='. $item['keterangan'] .'">T I D A K  L U N A S</a></td>';
-              } else {
-                echo '<td><a href="riwayat_keterangan.php?id='. $id .'?keterangan='. $item['keterangan'] .'">L U N A S</a></td>';
-              }
-            ?>
-          </tr>
-      </tbody>
-    </table>
+          <form action="riwayat_keterangan.php" method="POST">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID Transaksi</th>
+                  <th>ID Barang</th>
+                  <th>Nama Barang</th>
+                  <th>Harga Barang</th>
+                  <th>Jumlah Transaksi</th>
+                  <th>Harga Transaksi</th>
+                  <th>Keterangan Transaksi</th>
+                  <?php 
+                    
+                    if ($item['keterangan'] == 'Lunas') {
+                      ?>
+                      <th>Kembalian</th>
+                      <th>Tanggal Pelunasan</th>
+                      <?php
+                    }
+                    ?>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td><input type="text" value="<?php echo $item['id_transaksi']; ?>" readonly name="id_transaksi"></td>
+                    <td><input type="text" value="<?php echo $item['id_barang']; ?>" readonly name="id_barang"></td>
+                    <td><input type="text" value="<?php echo $item['nama_barang']; ?>" readonly name="nama_barang"></td>
+                    <td><input type="text" value="<?php echo $item['harga_barang']; ?>" readonly name="harga_barang"></td>
+                    <td><input type="text" value="<?php echo $item['jumlah_beli']; ?>" readonly name="jumlah_beli"></td>
+                    <td><?php echo $hargaTotal ?></td>
+                    <td><input type="text" value="<?php echo $item['keterangan']; ?>" readonly name="keterangan"></td>
+                    <?php 
+                    
+                    if($item['keterangan'] == 'Belum Lunas') {
+                      ?>
+                      <td><input type="number" name="harga_transaksi"></td>
+                      <td><input type="submit" value="Beli"></td>
+                      <?php
+                    } else if ($item['keterangan'] == 'Lunas') {
+                      ?>
+                      <td><input type="hidden" value="Bayar"></td>
+                      <td><input type="hidden" value="Beli"></td>
+                      <td><?php echo $item['harga_transaksi'] - $item['harga_barang'] ?></td>
+                      <?php
+                    }
+                    ?>
+                  </tr>
+              </tbody>
+            </table>
+          </form>
     <?php
   }
   ?>

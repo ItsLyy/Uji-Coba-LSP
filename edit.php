@@ -28,7 +28,7 @@ include 'koneksi.php';
       </tr>
       <tr>
         <th>Stok</th>
-        <td><input type="text" value="<?php echo $arrayData['jumlah_barang']; ?>" name="jumlah_barang"></td>
+        <td><input type="text" value="<?php echo $arrayData['stok_barang']; ?>" name="stok_barang"></td>
       </tr>
       <tr>
         <th>Harga</th>

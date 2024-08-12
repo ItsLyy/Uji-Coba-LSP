@@ -24,7 +24,7 @@ include 'koneksi.php';
       </tr>
       <tr>
         <th>Stok</th>
-        <td><input type="text" value="<?php echo $arrayData['jumlah_barang']; ?>" readonly name="harga_barang"></td>
+        <td><input type="text" value="<?php echo $arrayData['stok_barang']; ?>" readonly name="stok_barang"></td>
       </tr>
       <tr>
         <th>Harga</th>
@@ -33,14 +33,6 @@ include 'koneksi.php';
       <tr>
         <th>Jumlah</th>
         <td><input type="number" name="jumlah_transaksi"></td>
-      </tr>
-      <tr>
-        <th>Bayar</th>
-        <td><input type="number" name="bayar_transaksi"></td>
-      </tr>
-      <tr>
-        <th>Keterangan</th>
-        <td><input type="text" name="keterangan_transaksi"></input></td>
       </tr>
     </table>
     <input type="hidden" name="id" value="<?php echo $arrayData['id_barang']; ?>">

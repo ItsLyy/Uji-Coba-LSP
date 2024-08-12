@@ -1,5 +1,10 @@
 <?php
 include 'koneksi.php';
+session_start();
+if(isset($_SESSION['status'])) {
+  echo $_SESSION['status'];
+  session_unset();
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +42,7 @@ include 'koneksi.php';
           <tr>
             <td><?php echo $item['id_barang'] ?></td>
             <td><?php echo $item['nama_barang'] ?></td>
-            <td><?php echo $item['jumlah_barang'] ?></td>
+            <td><?php echo $item['stok_barang'] ?></td>
             <td><?php echo $item['harga_barang'] ?></td>
             <td><a href="beli.php?id=<?php echo $item['id_barang'] ?>">B E L I</a> | <a href="edit.php?id=<?php echo $item['id_barang'] ?>">E D I T</a> | <a href="hapus_proses.php?id=<?php echo $item['id_barang'] ?>">D E L E T E</a></td>
           </tr>

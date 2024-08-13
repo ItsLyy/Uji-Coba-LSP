@@ -25,7 +25,7 @@ if ($stok > 0 && $stok >= $jumlah) {
   }
   
   
-  $sqlTransaksi = "INSERT INTO tb_transaksi VALUES('$createIdTransaksi', (SELECT id_barang FROM tb_barang WHERE id_barang = '$idBarang'), '$currentDate', $jumlah, 0, 'Belum Lunas')";
+  $sqlTransaksi = "INSERT INTO tb_transaksi VALUES('$createIdTransaksi', (SELECT id_barang FROM tb_barang WHERE id_barang = '$idBarang'), '$currentDate', $jumlah, 'Belum Lunas', 0)";
   $sqlBarang = "UPDATE tb_barang SET stok_barang = $currentStok WHERE id_barang = '$idBarang'";
   $query = mysqli_query($conn, $sqlTransaksi);
   $query = mysqli_query($conn, $sqlBarang);

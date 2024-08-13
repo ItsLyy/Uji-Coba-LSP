@@ -9,6 +9,9 @@
   $currentDate = date("Y-d-m");
 
   if ($hargaTransaksi >= $hargaBarang) {
-    $sqlTransaksi = "UPDATE tb_transaksi SET tanggal_transaksi = '$currentDate', keterangan = 'Lunas' WHERE id_transaksi = $idTransaksi";
-  }
+    $sqlTransaksi = "UPDATE tb_transaksi SET tanggal_transaksi = '$currentDate', keterangan = 'Lunas', harga_transaksi = $hargaTransaksi WHERE id_transaksi = '$idTransaksi'";
+    $queryTransaksi = mysqli_query($conn, $sqlTransaksi);
+  } 
+
+  header('Location: index.php');
 ?>

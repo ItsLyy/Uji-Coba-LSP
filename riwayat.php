@@ -35,12 +35,12 @@ include 'koneksi.php';
                   <th>Jumlah Transaksi</th>
                   <th>Harga Transaksi</th>
                   <th>Keterangan Transaksi</th>
+                  <th>Harga Bayar</th>
                   <?php 
                     
                     if ($item['keterangan'] == 'Lunas') {
                       ?>
                       <th>Kembalian</th>
-                      <th>Tanggal Pelunasan</th>
                       <?php
                     }
                     ?>
@@ -64,9 +64,10 @@ include 'koneksi.php';
                       <?php
                     } else if ($item['keterangan'] == 'Lunas') {
                       ?>
+                    <td><input type="text" value="<?php echo $item['harga_transaksi']; ?>" readonly name="harga_transaksi"></td>
                       <td><input type="hidden" value="Bayar"></td>
                       <td><input type="hidden" value="Beli"></td>
-                      <td><?php echo $item['harga_transaksi'] - $item['harga_barang'] ?></td>
+                      <td><?php echo $item['harga_transaksi'] - $hargaTotal ?></td>
                       <?php
                     }
                     ?>
